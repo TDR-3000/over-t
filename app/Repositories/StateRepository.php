@@ -13,6 +13,6 @@ class StateRepository implements RepositoryInterface
 
 	public function getAll(): array
 	{
-		return $this->state->get()->toArray();
+		return $this->state->with('users')->get()->toArray();
 	}
 }

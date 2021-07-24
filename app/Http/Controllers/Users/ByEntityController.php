@@ -13,18 +13,14 @@ class IndexController extends Controller
 	private $job;
     private $respository;
 
-    private $request;
-
-    public function __construct(ResponseJobInterface $job, RepositoryInterface $repository, Request $request)
+    public function __construct(ResponseJobInterface $job, RepositoryInterface $repository)
     {
         $this->job         = $job;
         $this->respository = $repository;
-        $this->request     = $request;
     }
 
     public function __invoke()
     {
-        //dd($this->request);
     	return $this->response($this->job->jsonStructure(200, false, $this->respository->getAll()), 200);
     }
 }
