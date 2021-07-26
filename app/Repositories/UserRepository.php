@@ -2,7 +2,7 @@
 namespace App\Repositories;
 use App\Repositories\RepositoryInterface;
 use App\Models\User;
-class UserRepository implements RepositoryInterface
+class UserRepository implements Readable
 {
 	private $user;
 

@@ -13,10 +13,10 @@ class AppServiceProvider extends ServiceProvider
             \App\Jobs\ResponseJob::class
         );
         $this->app->when(\App\Http\Controllers\States\IndexController::class)
-                ->needs(\App\Repositories\RepositoryInterface::class)
+                ->needs(\App\Repositories\Readable::class)
                 ->give(\App\Repositories\StateRepository::class);
         $this->app->when(\App\Http\Controllers\Users\IndexController::class)
-                ->needs(\App\Repositories\RepositoryInterface::class)
+                ->needs(\App\Repositories\Readable::class)
                 ->give(\App\Repositories\UserRepository::class);
             
     }

@@ -2,7 +2,7 @@
 namespace App\Repositories;
 use App\Repositories\RepositoryInterface;
 use App\Models\State;
-class StateRepository implements RepositoryInterface
+class StateRepository implements Readable
 {
 	private $state;
 

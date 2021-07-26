@@ -5,9 +5,9 @@ namespace App\Http\Controllers\Users;
 use App\Http\Controllers\AppController as Controller;
 use Illuminate\Http\Request;
 use App\Jobs\ResponseJobInterface;
-use App\Repositories\RepositoryInterface;
+use App\Repositories\Readable;
 
-class IndexController extends Controller
+final class IndexController extends Controller
 {
 
 	private $job;
@@ -15,7 +15,7 @@ class IndexController extends Controller
 
     private $request;
 
-    public function __construct(ResponseJobInterface $job, RepositoryInterface $repository, Request $request)
+    public function __construct(ResponseJobInterface $job, Readable $repository, Request $request)
     {
         $this->job         = $job;
         $this->respository = $repository;
@@ -24,7 +24,6 @@ class IndexController extends Controller
 
     public function __invoke()
     {
-        //dd($this->request);
     	return $this->response($this->job->jsonStructure(200, false, $this->respository->getAll()), 200);
     }
 }

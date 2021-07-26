@@ -5,7 +5,7 @@ namespace App\Http\Controllers\States;
 use App\Http\Controllers\AppController as Controller;
 use Illuminate\Http\Request;
 use App\Jobs\ResponseJobInterface;
-use App\Repositories\RepositoryInterface;
+use App\Repositories\Readable;
 
 
 final class IndexController extends Controller
@@ -14,7 +14,7 @@ final class IndexController extends Controller
     private $job;
     private $respository;
 
-    public function __construct(ResponseJobInterface $job, RepositoryInterface $repository)
+    public function __construct(ResponseJobInterface $job, Readable $repository)
     {
         $this->job         = $job;
         $this->respository = $repository;

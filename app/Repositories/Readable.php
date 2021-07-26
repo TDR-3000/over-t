@@ -1,6 +1,6 @@
 <?php
 namespace App\Repositories;
-interface RepositoryInterface
+interface Readable
 {
 	public function getAll(): array;
 }
