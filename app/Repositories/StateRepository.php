@@ -13,6 +13,8 @@ class StateRepository implements Readable
 
 	public function getAll(): array
 	{
-		return $this->state->with('users')->get()->toArray();
+		return $this->state->with(['users' => function ($query) {
+			return $query->select('id', 'user_name', 'state_id');
+		}])->get()->toArray();
 	}
 }

@@ -15,6 +15,6 @@ class UserRepository implements Readable
 	{
 		return $this->user->with(['states' => function ($query) {
 			return $query->select('id', 'state');
-		}])->select('id', 'user_name', 'email', 'state_id')->get()->toArray();
+		}])->get()->toArray();
 	}
 }

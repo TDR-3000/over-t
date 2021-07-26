@@ -13,15 +13,22 @@ final class IndexController extends Controller
 
     private $response;
     private $respository;
+    private $dependencies;
 
     public function __construct(Json $response, Readable $repository)
     {
-        $this->response         = $response;
-        $this->respository = $repository;
+        $this->response     = $response;
+        $this->respository  = $repository;
+        $this->dependencies = [
+            'current' => 'states/',
+            'dependencies' => [
+                'users'
+            ]
+        ];
     }
 
     public function __invoke()
     {
-        return $this->response($this->response->jsonStructure(200, false, $this->respository->getAll()), 200);
+        return $this->response($this->response->jsonStructure(200, false, $this->respository->getAll(), $this->dependencies), 200);
     }
 }
