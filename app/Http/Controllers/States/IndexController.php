@@ -4,24 +4,24 @@ namespace App\Http\Controllers\States;
 
 use App\Http\Controllers\AppController as Controller;
 use Illuminate\Http\Request;
-use App\Jobs\ResponseJobInterface;
+use App\Jobs\Json;
 use App\Repositories\Readable;
 
 
 final class IndexController extends Controller
 {
 
-    private $job;
+    private $response;
     private $respository;
 
-    public function __construct(ResponseJobInterface $job, Readable $repository)
+    public function __construct(Json $response, Readable $repository)
     {
-        $this->job         = $job;
+        $this->response         = $response;
         $this->respository = $repository;
     }
 
     public function __invoke()
     {
-        return $this->response($this->job->jsonStructure(200, false, $this->respository->getAll()), 200);
+        return $this->response($this->response->jsonStructure(200, false, $this->respository->getAll()), 200);
     }
 }

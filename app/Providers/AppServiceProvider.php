@@ -9,7 +9,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
     	$this->app->singleton(
-            \App\Jobs\ResponseJobInterface::class, 
+            \App\Jobs\Json::class, 
             \App\Jobs\ResponseJob::class
         );
         $this->app->when(\App\Http\Controllers\States\IndexController::class)

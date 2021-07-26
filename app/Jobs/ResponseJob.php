@@ -3,7 +3,7 @@
 namespace App\Jobs;
 use App\Jobs\ResponseJobInterface;
 
-class ResponseJob extends Job implements ResponseJobInterface
+class ResponseJob extends Job implements Json
 {
     private $responseStrcuture;
     private const API = 'http://localhost:8000/api/v1/';
