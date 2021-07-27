@@ -5,34 +5,31 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use Illuminate\Support\Str;
 
 class UsersSeeder extends Seeder
 {
-	private $data = [];
-
-	public function __construct()
-	{
-		$this->data = [
-			'user_name' => 'default',
-			'first_name'=> 'default',
-			'second_name'=> 'default',
-			'first_last_name'=> 'default',
-			'second_last_name'=> 'default',
-			'email'=> 'default@default.com',
-			'cellphone'=> '1234567890',
-			'password' => 'default',
-			'state_id'=> 2,
-			'created_at'=> Carbon::now(),
-			'updated_at'=> Carbon::now()
-		];
-	}
     /**
      * Run the database seeds.
      *
      * @return void
      */
     public function run()
-    {        
-        DB::table('users')->insert($this->data);
+    {  
+		for ($index = 0; $index < 3; $index++) {
+			DB::table('users')->insert([
+				'user_name' => 'default',
+				'first_name'=> 'default',
+				'second_name'=> 'default',
+				'first_last_name'=> 'default',
+				'second_last_name'=> 'default',
+				'email'=> Str::random(10) . '@default.com',
+				'cellphone'=> '1234567890',
+				'password' => 'default',
+				'state_id'=> rand(1, 4),
+				'created_at'=> Carbon::now(),
+				'updated_at'=> Carbon::now()
+			]);
+		}      
     }
 }

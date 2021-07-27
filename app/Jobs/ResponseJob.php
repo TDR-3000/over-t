@@ -17,36 +17,30 @@ class ResponseJob extends Job implements Json
     public function jsonStructure(int $status, bool $error, string|array $response, ?array $dependencies): array
     {
         if (!empty($dependencies['dependencies'])) {
-            $response = $this->pushDependencyUrl($response, $dependencies['dependencies']);
+            $response = $this->pushHateoas($response);
         }
 
         return $this->responseStrcuture = [
             "status"      => $status,
             "error"       => $error,
-            "message"     => $this->pushCurrentUrl($response, $dependencies),
+            "message"     => $response,
             "current_url" => $this->api . $dependencies['current']
         ];
     }
 
-    private function pushCurrentUrl(array $response, ?array $dependencies): array
+    // PARTIAL //
+    private function pushHateoas(array $response): array
     {
-        for ($i = 0; $i < count($response); $i++) {
-            $response[$i]['url'] = $this->api . $dependencies['current'] .  $response[$i]['id'];
-        }
         
-        return $response;
-    }
-
-    private function pushDependencyUrl(array $response, ?array $dependencies): array
-    {
-        for ($i = 0; $i < count($response); $i++) {
-            for ($j = 0; $j < count($dependencies); $j++) {
-                if (!empty($response[$i][$dependencies[$j]])) {
-                    //print_r($response[$i][$dependencies[$j]]);
-                    //$response[$i][$dependencies[$j]]['url'] = $this->api . $dependencies[$j] .'/'. $response[$i][$dependencies[$j]]['id'];
+        return array_map(function ($v) {
+            if (!empty($v['states'])) {
+                $v['states']['url'] = $this->api . 'states' . '/' . $v['states']['id'];
+            } else if (!empty($v['users'])) {
+                foreach ($v['users'] as $key => $value) {
+                    $v['users'][$key]['url'] = $this->api . 'users' . '/' . $v['users'][$key]['id'];
                 }
             }
-        }
-        return $response;
+            return $v;
+        }, $response);
     }
 }
