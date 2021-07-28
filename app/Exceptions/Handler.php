@@ -9,6 +9,7 @@ use Laravel\Lumen\Exceptions\Handler as ExceptionHandler;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Throwable;
 use App\Exceptions\StateException;
+use App\Exceptions\ApiException;
 
 class Handler extends ExceptionHandler
 {
@@ -50,13 +51,14 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $e)
     {
-        if ($e instanceof StateException) {
+        if ($e instanceof StateException || $e instanceof ApiException) {
+            $classTemporally = new \ReflectionClass(get_class($e));
+            $class = explode('\\', $classTemporally->getName());
             $json = [
-                'success' => false,
-                'error' => [
-                    'code' => $e->getCode(),
-                    'message' => $e->getMessage(),
-                ],
+                'status' => $e->getCode(),
+                'error'  => true,
+                'class'  => $class[2],
+                'message'=> $e->getMessage()
             ];
             return response()->json($json, $e->getCode());
         }
