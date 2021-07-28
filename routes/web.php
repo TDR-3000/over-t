@@ -29,10 +29,12 @@ $router->group(['prefix' => 'api/v1'], function () use ($router) {
 	// STATES //
 	$router->group(['prefix' => 'states'], function () use ($router) {
 		$router->get('/', 'States\IndexController');
+		$router->get('/{id}', 'States\ShowController');
 	});
 	// USERS //
 	$router->group(['prefix' => 'users'], function () use ($router) {
 		$router->get('/', 'Users\IndexController');
+		$router->get('/{id}', 'Users\ShowController');
 	});
 });
 

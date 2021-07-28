@@ -16,10 +16,7 @@ class ResponseJob extends Job implements Json
 
     public function jsonStructure(int $status, bool $error, string|array $response, ?array $dependencies): array
     {
-        if (!empty($dependencies['dependencies'])) {
-            $response = $this->pushHateoas($response);
-        }
-
+        $response = $this->pushHateoas($response);
         return $this->responseStrcuture = [
             "status"      => $status,
             "error"       => $error,

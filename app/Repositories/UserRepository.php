@@ -17,4 +17,11 @@ class UserRepository implements Readable
 			return $query->select('id', 'state');
 		}])->get()->toArray();
 	}
+
+	public function getOne(int $id): array
+	{
+		return $this->user->with(['states' => function ($query) {
+			return $query->select('id', 'state');
+		}])->where('id', $id)->get()->toArray();
+	}
 }
