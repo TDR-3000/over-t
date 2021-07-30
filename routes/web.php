@@ -35,6 +35,7 @@ $router->group(['middleware' => 'api', 'prefix' => 'api/v1'], function () use ($
 	$router->group(['prefix' => 'users'], function () use ($router) {
 		$router->get('/', 'Users\IndexController');
 		$router->get('/{id}', 'Users\ShowController');
+		$router->patch('/{id}', 'Users\DeleteController');
 	});
 });
 

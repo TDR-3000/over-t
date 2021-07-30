@@ -1,8 +1,9 @@
 <?php
 namespace App\Repositories;
-use App\Repositories\RepositoryInterface;
+use App\Repositories\{Readable, Writetable};
 use App\Models\User;
-class UserRepository implements Readable
+use App\Exceptions\UserException;
+class UserRepository implements Readable, Writetable
 {
 	private $user;
 
@@ -20,8 +21,31 @@ class UserRepository implements Readable
 
 	public function getOne(int $id): array
 	{
-		return $this->user->with(['states' => function ($query) {
+		$record = $this->user->with(['states' => function ($query) {
 			return $query->select('id', 'state');
 		}])->where('id', $id)->get()->toArray();
+
+		if ($record === null) {
+			throw new UserException('El registro no existe', 404);
+		}
+
+		return $record;
+	}
+
+	public function delete(int $id)
+	{
+		$record = $this->user->find($id);
+
+		if ($record === null) {
+			throw new UserException('El registro no existe', 404);
+		}
+
+		$record->state_id = 1;
+		$response = $record->save();
+
+		if (!$response) {
+            throw new UserException('Ha ocurrido un error', 500);
+        }
+
 	}
 }

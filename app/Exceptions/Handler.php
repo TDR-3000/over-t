@@ -8,8 +8,7 @@ use Illuminate\Validation\ValidationException;
 use Laravel\Lumen\Exceptions\Handler as ExceptionHandler;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Throwable;
-use App\Exceptions\StateException;
-use App\Exceptions\ApiException;
+use App\Exceptions\{ApiException, UserException, StateException};
 
 class Handler extends ExceptionHandler
 {
@@ -51,7 +50,10 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $e)
     {
-        if ($e instanceof StateException || $e instanceof ApiException) {
+        if ($e instanceof StateException || 
+            $e instanceof ApiException ||
+            $e instanceof UserException
+        ) {
             $classTemporally = new \ReflectionClass(get_class($e));
             $class = explode('\\', $classTemporally->getName());
             $json = [

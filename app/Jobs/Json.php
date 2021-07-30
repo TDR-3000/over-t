@@ -2,5 +2,5 @@
 namespace App\Jobs;
 interface Json
 {
-    public function jsonStructure(int $status, bool $error, string|array $response, ?array $dependencies): array;
+    public function jsonStructure(int $status, bool $error, string|array|null $response, ?array $dependencies): array;
 }
