@@ -25,6 +25,9 @@ class AppServiceProvider extends ServiceProvider
                 ->needs(\App\Repositories\Readable::class)
                 ->give(\App\Repositories\UserRepository::class);
         
+        $this->app->when(\App\Http\Controllers\Users\StoreController::class)
+                ->needs(\App\Repositories\Writetable::class)
+                ->give(\App\Repositories\UserRepository::class);
         $this->app->when(\App\Http\Controllers\Users\DeleteController::class)
                 ->needs(\App\Repositories\Writetable::class)
                 ->give(\App\Repositories\UserRepository::class);

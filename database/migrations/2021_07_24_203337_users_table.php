@@ -22,7 +22,7 @@ class UsersTable extends Migration
             $table->string('second_last_name', 45)->nullable();
             $table->string('email', 125)->unique();
             $table->string('cellphone', 12)->nullable();
-            $table->string('password', 25);
+            $table->string('password', 125);
             $table->integer('state_id')->unsigned();
             $table->timestamps();
             $table->foreign('state_id')->references('id')->on('states');

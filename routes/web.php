@@ -34,8 +34,9 @@ $router->group(['middleware' => 'api', 'prefix' => 'api/v1'], function () use ($
 	// USERS //
 	$router->group(['prefix' => 'users'], function () use ($router) {
 		$router->get('/', 'Users\IndexController');
+		$router->post('/', 'Users\StoreController');
 		$router->get('/{id}', 'Users\ShowController');
-		$router->patch('/{id}', 'Users\DeleteController');
+		$router->delete('/{id}', 'Users\DeleteController');
 	});
 });
 
