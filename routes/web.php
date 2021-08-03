@@ -36,6 +36,7 @@ $router->group(['middleware' => 'api', 'prefix' => 'api/v1'], function () use ($
 		$router->get('/', 'Users\IndexController');
 		$router->post('/', 'Users\StoreController');
 		$router->get('/{id}', 'Users\ShowController');
+		$router->put('/{id}', 'Users\UpdateController');
 		$router->delete('/{id}', 'Users\DeleteController');
 	});
 });

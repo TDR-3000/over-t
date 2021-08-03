@@ -7,7 +7,7 @@ use App\Jobs\Json;
 use App\Repositories\Writetable;
 use Illuminate\Http\Request;
 
-class StoreController extends Controller
+class UpdateController extends Controller
 {
     private $repository;
     private $response;
@@ -21,21 +21,21 @@ class StoreController extends Controller
             'current' => 'users/'
         ];
     }
-
-    public function __invoke(Request $request)
+    
+    public function __invoke(Request $request, int $id)
     {
         $this->validate($request, [
-            'user_name' => 'required|max:45',
-            'first_name' => 'required|max:45',
+            'user_name' => 'nullable|max:45',
+            'first_name' => 'nullable|max:45',
             'second_name' => 'nullable|max:45',
-            'first_last_name' => 'required|max:45',
+            'first_last_name' => 'nullable|max:45',
             'second_last_name' => 'nullable|max:45',
-            'email' => 'required|email|unique:users',
+            'email' => 'nullable|email',
             'cellphone' => 'nullable|max:12',
-            'password' => 'required|max:125',
-            'state_id' => 'required|integer'    
+            'password' => 'nullable|max:125',
+            'state_id' => 'nullable|integer'    
         ]);
 
-        return $this->response($this->response->jsonStructure(201, false, $this->repository->store($request), $this->dependencies), 201);
+        return $this->response($this->response->jsonStructure(200, false, $this->repository->update($request, $id), $this->dependencies), 200);
     }
 }

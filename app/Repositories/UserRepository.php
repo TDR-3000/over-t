@@ -35,15 +35,10 @@ class UserRepository implements Readable, Writetable
 
 	public function store(Request $request): array
 	{
-		$this->user->user_name = $request->input('user_name');
-    	$this->user->first_name = $request->input('first_name');
-    	$this->user->second_name = $request->input('second_name');
-    	$this->user->first_last_name = $request->input('first_last_name');
-		$this->user->second_last_name = $request->input('second_last_name');
-		$this->user->email = $request->input('email');
-		$this->user->cellphone = $request->input('cellphone');
-		$this->user->password = password_hash($request->input('password'), PASSWORD_DEFAULT);
-		$this->user->state_id = $request->input('state_id');
+		$data = $request->all();
+		array_walk($data, function ($value, $key) use ($request) {
+			$this->user->$key = $request->input($key);
+		});
 		$response = $this->user->save();
 
         if (!$response) {
@@ -57,7 +52,34 @@ class UserRepository implements Readable, Writetable
 		];
 	}
 
-	public function delete(int $id)
+	public function update(Request $request, int $id): array
+	{
+		$record = $this->user->find($id);
+
+		if ($record === null) {
+			throw new UserException('El registro no existe', 404);
+		}
+
+		$data = $request->all();
+
+		array_walk($data, function ($value, $key) use ($record, $request) {
+			$record->$key = (!empty($request->input($key))) ? $request->input($key) : $record->$key;
+		});
+
+		$response = $record->save();
+
+        if (!$response) {
+            throw new UserException('Ha ocurrido un error', 500);
+        }
+
+		return [
+			"id" => $record->id,
+			"user_name" => $record->user_name,
+			"email" => $record->email
+		];
+	}
+
+	public function delete(int $id): bool
 	{
 		$record = $this->user->find($id);
 
@@ -71,5 +93,6 @@ class UserRepository implements Readable, Writetable
             throw new UserException('Ha ocurrido un error', 500);
         }
 
+		return true;
 	}
 }

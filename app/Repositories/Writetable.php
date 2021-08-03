@@ -8,5 +8,7 @@ interface Writetable
 {
     public function store(Request $request): array;
 
-    public function delete(int $id);
+    public function update(Request $request, int $id): array;
+
+    public function delete(int $id): bool;
 }
