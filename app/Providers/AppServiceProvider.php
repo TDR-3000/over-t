@@ -34,5 +34,10 @@ class AppServiceProvider extends ServiceProvider
         $this->app->when(\App\Http\Controllers\Users\DeleteController::class)
                 ->needs(\App\Repositories\Writetable::class)
                 ->give(\App\Repositories\UserRepository::class);
+
+        $this->app->singleton(
+           \App\Repositories\Auth::class,
+           \App\Repositories\AuthRepository::class
+        );
     }
 }

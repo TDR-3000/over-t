@@ -26,6 +26,8 @@ $router->group(['middleware' => 'api', 'prefix' => 'api/v1'], function () use ($
 	$router->get('/', function () {
 		echo 'hola mundo';
 	});
+	// LOGIN //
+	$router->post('/login', 'Login\AuthController');
 	// STATES //
 	$router->group(['prefix' => 'states'], function () use ($router) {
 		$router->get('/', 'States\IndexController');
