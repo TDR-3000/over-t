@@ -95,4 +95,16 @@ class UserRepository implements Readable, Writetable
 
 		return true;
 	}
+
+	//
+
+	public function byEmailAndUserName(?string $email, ?string $userName): array
+	{
+		return $this->user->where('email', '=', $email)
+                    ->orWhere('user_name', '=', $userName)
+                    ->select('user_name', 'email', 'password')
+                    ->get()
+                    ->makeVisible('password')
+                    ->toArray();
+	}
 }
