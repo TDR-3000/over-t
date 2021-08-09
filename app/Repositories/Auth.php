@@ -6,5 +6,5 @@ use Illuminate\Http\Request;
 
 interface Auth
 {
-    public function login(Request $request): bool;
+    public function login(Request $request): array;
 }

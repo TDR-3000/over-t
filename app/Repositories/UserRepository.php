@@ -102,7 +102,7 @@ class UserRepository implements Readable, Writetable
 	{
 		return $this->user->where('email', '=', $email)
                     ->orWhere('user_name', '=', $userName)
-                    ->select('user_name', 'email', 'password')
+                    ->select('id', 'user_name', 'email', 'password')
                     ->get()
                     ->makeVisible('password')
                     ->toArray();

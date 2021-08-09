@@ -52,7 +52,8 @@ class Handler extends ExceptionHandler
     {
         if ($e instanceof StateException || 
             $e instanceof ApiException ||
-            $e instanceof UserException
+            $e instanceof UserException ||
+            $e instanceof JwtException
         ) {
             $classTemporally = new \ReflectionClass(get_class($e));
             $class = explode('\\', $classTemporally->getName());

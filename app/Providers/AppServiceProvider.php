@@ -12,6 +12,7 @@ class AppServiceProvider extends ServiceProvider
             \App\Helpers\Json::class, 
             \App\Helpers\ResponseHelper::class
         );
+
         $this->app->when(\App\Http\Controllers\States\IndexController::class)
                 ->needs(\App\Repositories\Readable::class)
                 ->give(\App\Repositories\StateRepository::class);
@@ -38,6 +39,11 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(
            \App\Repositories\Auth::class,
            \App\Repositories\AuthRepository::class
+        );
+
+        $this->app->singleton(
+           \App\Helpers\Auth::class,
+           \App\Helpers\JwtHelper::class
         );
     }
 }
