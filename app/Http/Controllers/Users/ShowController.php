@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Users;
 
 use App\Http\Controllers\AppController as Controller;
-use App\Jobs\Json;
+use App\Helpers\Json;
 use App\Repositories\Readable;
 
 class ShowController extends Controller

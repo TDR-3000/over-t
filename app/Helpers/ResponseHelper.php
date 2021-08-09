@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Jobs;
-use App\Jobs\ResponseJobInterface;
+namespace App\Helpers;
+use App\Helpers\ResponseJobInterface;
 
-class ResponseJob extends Job implements Json
+class ResponseHelper implements Json
 {
     private $responseStrcuture;
     private $api;

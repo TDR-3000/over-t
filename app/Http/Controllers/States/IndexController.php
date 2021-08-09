@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\States;
 
 use App\Http\Controllers\AppController as Controller;
-use App\Jobs\Json;
+use App\Helpers\Json;
 use App\Repositories\Readable;
 
 final class IndexController extends Controller
