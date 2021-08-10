@@ -78,6 +78,7 @@ $app->configure('app');
 
 $app->routeMiddleware([
     'api' => App\Http\Middleware\ApiMiddleware::class,
+    'auth'=> App\Http\Middleware\AuthMiddleware::class
 ]);
 
 /*

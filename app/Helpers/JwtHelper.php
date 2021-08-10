@@ -2,6 +2,7 @@
 namespace App\Helpers;
 
 use App\Exceptions\JwtException;
+use Exception;
 use Firebase\JWT\JWT;
 
 class JwtHelper implements Auth
@@ -32,18 +33,18 @@ class JwtHelper implements Auth
 
     public function check(string $token): void
     {
-        if (empty($token)) {
-            throw new JwtException("Token invalido");
-        }
-
-        $decode = JWT::decode(
-            $token,
-            $this->secret,
-            $this->encrypt
-        );
-
-        if ($decode->aud !== $this->aud()) {
-            throw new JwtException("Usuario invalido");
+        try {
+            $decode = JWT::decode(
+                $token,
+                $this->secret,
+                $this->encrypt
+            );
+    
+            if ($decode->aud !== $this->aud()) {
+                throw new JwtException("Usuario invalido", 401);
+            }
+        } catch (Exception $e) {
+            throw new JwtException("Token invalido", 401);
         }
     }
 

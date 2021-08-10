@@ -34,7 +34,7 @@ $router->group(['middleware' => 'api', 'prefix' => 'api/v1'], function () use ($
 		$router->get('/{id}', 'States\ShowController');
 	});
 	// USERS //
-	$router->group(['prefix' => 'users'], function () use ($router) {
+	$router->group(['middleware' => 'auth', 'prefix' => 'users'], function () use ($router) {
 		$router->get('/', 'Users\IndexController');
 		$router->post('/', 'Users\StoreController');
 		$router->get('/{id}', 'Users\ShowController');
