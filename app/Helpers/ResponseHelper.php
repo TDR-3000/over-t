@@ -17,7 +17,7 @@ class ResponseHelper implements Json
     public function jsonStructure(int $status, bool $error, string|array|null $response, ?array $dependencies): array
     {
         if (!empty($dependencies['dependencies'])) {
-            $response = $this->pushHateoas($response);
+            $response = $this->pushHateoas($response, $dependencies['dependencies']);
         }
         
         return $this->responseStrcuture = [
@@ -29,18 +29,25 @@ class ResponseHelper implements Json
     }
 
     // PARTIAL //
-    private function pushHateoas(array $response): array
+    private function pushHateoas(array $response, array $dependencies): array
     {
-        
-        return array_map(function ($v) {
-            if (!empty($v['states'])) {
-                $v['states']['url'] = $this->api . 'states' . '/' . $v['states']['id'];
-            } else if (!empty($v['users'])) {
-                foreach ($v['users'] as $key => $value) {
-                    $v['users'][$key]['url'] = $this->api . 'users' . '/' . $v['users'][$key]['id'];
+        foreach ($dependencies as $value) {
+            for ($index = 0; $index < count($response); $index++) {
+                if (!empty($response[$index][$value])) {
+                    if (isset($response[$index][$value][0])) {
+                        for ($index = 0; $index < count($response); $index++) {
+                            for ($i=0; $i < count($response[$index][$value]); $i++) { 
+                                $response[$index][$value][$i]['url'] = $this->api . $value . '/' . $response[$index][$value][$i]['id'];
+                            }
+                        }
+                    } else {
+                        for ($index = 0; $index < count($response); $index++) {
+                            $response[$index][$value]['url'] = $this->api . $value . '/' . $response[$index][$value]['id'];
+                        }
+                    }
                 }
             }
-            return $v;
-        }, $response);
+        }
+        return $response;
     }
 }
