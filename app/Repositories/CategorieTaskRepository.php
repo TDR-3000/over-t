@@ -56,7 +56,28 @@ class CategorieTaskRepository implements Readable, Writetable
 
     public function update(Request $request, int $id): array
     {
-        return [];
+        $record = $this->categorieTask->find($id);
+
+		if ($record === null) {
+			throw new CategorieTaskException('El registro no existe', 404);
+		}
+
+		$data = $request->all();
+
+		array_walk($data, function ($value, $key) use ($record, $request) {
+			$record->$key = (!empty($request->input($key))) ? $request->input($key) : $record->$key;
+		});
+
+		$response = $record->save();
+
+        if (!$response) {
+            throw new CategorieTaskException('Ha ocurrido un error', 500);
+        }
+
+		return [
+			"id" => $record->id,
+			"user_name" => $record->category
+		];
     }
 
     public function delete(int $id): array
