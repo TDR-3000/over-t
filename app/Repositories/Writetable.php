@@ -10,5 +10,5 @@ interface Writetable
 
     public function update(Request $request, int $id): array;
 
-    public function delete(int $id): bool;
+    public function delete(int $id): array;
 }

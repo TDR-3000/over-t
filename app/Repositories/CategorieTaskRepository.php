@@ -20,16 +20,16 @@ class CategorieTaskRepository implements Readable, Writetable
     {
         return $this->categorieTask->with(['tasks' => function ($query) {
 			return $query->select('id', 'task', 'categorie_task_id');
-		}])->get()->toArray();
+		}])->where('status', 1)->get()->toArray();
     }
 
     public function getOne(int $id): array
     {
         $record = $this->categorieTask->with(['tasks' => function ($query) {
 			return $query->select('id', 'task', 'categorie_task_id');
-		}])->where('id', $id)->get()->toArray();
+		}])->where('id', $id)->where('status', 1)->get()->toArray();
 
-        if ($record === null) {
+        if (empty($record)) {
 			throw new CategorieTaskException('El registro no existe', 404);
 		}
 
@@ -59,8 +59,23 @@ class CategorieTaskRepository implements Readable, Writetable
         return [];
     }
 
-    public function delete(int $id): bool
+    public function delete(int $id): array
     {
-        return true;
+        $record = $this->categorieTask->find($id);
+
+		if ($record === null) {
+			throw new CategorieTaskException('El registro no existe', 404);
+		}
+
+		$response = $record->delete();
+
+		if (!$response) {
+            throw new CategorieTaskException('Ha ocurrido un error', 500);
+        }
+
+		return [
+            "id" => $record->id,
+            "message" => "Elminado"
+        ];
     }
 }

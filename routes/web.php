@@ -43,6 +43,7 @@ $router->group(['middleware' => 'api', 'prefix' => 'api/v1'], function () use ($
 		$router->get('/', 'CategoriesTasks\IndexController');
 		$router->post('/', 'CategoriesTasks\StoreController');
 		$router->get('/{id}', 'CategoriesTasks\ShowController');
+		$router->delete('/{id}', 'CategoriesTasks\DeleteController');
 	});
 });
 

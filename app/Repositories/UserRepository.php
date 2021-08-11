@@ -28,7 +28,7 @@ class UserRepository implements Readable, Writetable
 			return $query->select('id', 'state');
 		}])->where('id', $id)->get()->toArray();
 
-		if ($record === null) {
+		if (empty($record)) {
 			throw new UserException('El registro no existe', 404);
 		}
 
@@ -81,7 +81,7 @@ class UserRepository implements Readable, Writetable
 		];
 	}
 
-	public function delete(int $id): bool
+	public function delete(int $id): array
 	{
 		$record = $this->user->find($id);
 
@@ -95,7 +95,10 @@ class UserRepository implements Readable, Writetable
             throw new UserException('Ha ocurrido un error', 500);
         }
 
-		return true;
+		return [
+			"id" => $record->id,
+			"message" => "Eliminado"
+		];
 	}
 
 	//
