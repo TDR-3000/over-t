@@ -6,7 +6,7 @@ use App\Http\Controllers\AppController as Controller;
 use App\Helpers\Json;
 use App\Repositories\Readable;
 
-class ShowController extends Controller
+final class ShowController extends Controller
 {
 
 	private $response;

@@ -6,7 +6,7 @@ use Laravel\Lumen\Routing\Router;
 use App\Http\Controllers\AppController as Controller;
 use App\Helpers\{Json, RoutesHelper};
 
-class HomeController extends Controller
+final class HomeController extends Controller
 {
 
     use RoutesHelper;

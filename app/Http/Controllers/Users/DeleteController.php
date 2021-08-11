@@ -6,7 +6,7 @@ use App\Http\Controllers\AppController as Controller;
 use App\Helpers\Json;
 use App\Repositories\Writetable;
 
-class DeleteController extends Controller
+final class DeleteController extends Controller
 {
 
     private $repository;

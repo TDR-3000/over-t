@@ -7,7 +7,7 @@ use App\Helpers\Json;
 use App\Repositories\Writetable;
 use Illuminate\Http\Request;
 
-class StoreController extends Controller
+final class StoreController extends Controller
 {
     private $repository;
     private $response;
