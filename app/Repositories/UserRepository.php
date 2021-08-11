@@ -17,6 +17,8 @@ class UserRepository implements Readable, Writetable
 	{
 		return $this->user->with(['states' => function ($query) {
 			return $query->select('id', 'state');
+		}])->with(['tasks' => function ($query) {
+			return $query->select('id', 'task', 'user_id');
 		}])->get()->toArray();
 	}
 

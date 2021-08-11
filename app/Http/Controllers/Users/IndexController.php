@@ -20,7 +20,8 @@ final class IndexController extends Controller
         $this->dependencies = [
             'current' => 'users/',
             'dependencies' => [
-                'states'
+                'states',
+                'tasks'
             ]
         ];
     }

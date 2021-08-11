@@ -3,6 +3,9 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
+use Illuminate\Support\Str;
 
 class CategoriesTasksSeeder extends Seeder
 {
@@ -13,6 +16,14 @@ class CategoriesTasksSeeder extends Seeder
      */
     public function run()
     {
-        //
+        for ($index = 0; $index < 2; $index++) {
+            DB::table('categories_tasks')->insert([
+				'category' => Str::random(10), 
+                'description' => Str::random(20), 
+                'status' => 1,
+				'created_at'=> Carbon::now(),
+				'updated_at'=> Carbon::now()
+			]);
+        }
     }
 }

@@ -3,8 +3,12 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Database\Seeders\StatesSeeder;
-use Database\Seeders\UsersSeeder;
+use Database\Seeders\{
+    StatesSeeder, 
+    UsersSeeder,
+    CategoriesTasksSeeder,
+    TasksSeeder
+};
 
 class DatabaseSeeder extends Seeder
 {
@@ -17,7 +21,9 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             StatesSeeder::class,
-            UsersSeeder::class
+            UsersSeeder::class,
+            CategoriesTasksSeeder::class,
+            TasksSeeder::class
         ]);
     }
 }

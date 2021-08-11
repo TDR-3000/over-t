@@ -18,7 +18,7 @@ final class IndexController extends Controller
         $this->repository = $repository;
         $this->response = $response;
         $this->dependencies = [
-            "current" => '/categories-tasks'
+            "current" => 'categories-tasks/'
         ];
     }
 
