@@ -10,4 +10,9 @@ class Task extends Model
     {
     	return $this->belongsTo(User::class, 'user_id');
     }
+
+    public function categoriesTasks()
+    {
+        return $this->belongsTo(CategorieTask::class, 'categorie_task_id');
+    }
 }
