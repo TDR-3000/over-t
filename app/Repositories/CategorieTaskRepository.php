@@ -50,7 +50,7 @@ class CategorieTaskRepository implements Readable, Writetable
 
 		return [
 			"id" => $this->categorieTask->id,
-			"user_name" => $this->categorieTask->category
+			"category" => $this->categorieTask->category
 		];
     }
 
@@ -76,7 +76,7 @@ class CategorieTaskRepository implements Readable, Writetable
 
 		return [
 			"id" => $record->id,
-			"user_name" => $record->category
+			"category" => $record->category
 		];
     }
 

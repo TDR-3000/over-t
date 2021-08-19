@@ -54,7 +54,8 @@ class Handler extends ExceptionHandler
             $e instanceof ApiException ||
             $e instanceof UserException ||
             $e instanceof JwtException ||
-            $e instanceof CategorieTaskException
+            $e instanceof CategorieTaskException ||
+            $e instanceof TaskException
         ) {
             $classTemporally = new \ReflectionClass(get_class($e));
             $class = explode('\\', $classTemporally->getName());

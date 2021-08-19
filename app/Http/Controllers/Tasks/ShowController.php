@@ -6,7 +6,7 @@ use App\Http\Controllers\AppController as Controller;
 use App\Repositories\Readable;
 use App\Helpers\Json;
 
-final class IndexController extends Controller
+class ShowController extends Controller
 {
 
     private $repository;
@@ -26,8 +26,8 @@ final class IndexController extends Controller
         ];
     }
 
-    public function __invoke()
+    public function __invoke(int $id)
     {
-        return $this->response($this->response->jsonStructure(200, false, $this->repository->getAll(), $this->dependencies), 200);
+        return $this->response($this->response->jsonStructure(200, false, $this->repository->getOne($id), $this->dependencies), 200);
     }
 }

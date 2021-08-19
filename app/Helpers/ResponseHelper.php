@@ -37,12 +37,14 @@ class ResponseHelper implements Json
                     if (isset($response[$index][$value][0])) {
                         for ($index = 0; $index < count($response); $index++) {
                             for ($i=0; $i < count($response[$index][$value]); $i++) { 
-                                $response[$index][$value][$i]['url'] = $this->api . $value . '/' . $response[$index][$value][$i]['id'];
+                                $filter = str_replace("_", "-", $this->api . $value . '/' . $response[$index][$value][$i]['id']);
+                                $response[$index][$value][$i]['url'] = $filter;
                             }
                         }
                     } else {
                         for ($index = 0; $index < count($response); $index++) {
-                            $response[$index][$value]['url'] = $this->api . $value . '/' . $response[$index][$value]['id'];
+                            $filter = str_replace("_", "-", $this->api . $value . '/' . $response[$index][$value]['id']);
+                            $response[$index][$value]['url'] = $filter;
                         }
                     }
                 }

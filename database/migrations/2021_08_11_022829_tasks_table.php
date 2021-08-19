@@ -20,7 +20,7 @@ class TasksTable extends Migration
             $table->integer('status');
             $table->integer('priority');
             $table->dateTime('dead_line');
-            $table->dateTime('closing_date');
+            $table->dateTime('closing_date')->nullable();
             $table->integer('user_id')->unsigned();
             $table->integer('categorie_task_id')->unsigned();
             $table->timestamps();

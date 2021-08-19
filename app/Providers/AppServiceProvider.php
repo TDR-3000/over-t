@@ -63,5 +63,11 @@ class AppServiceProvider extends ServiceProvider
         $this->app->when(\App\Http\Controllers\Tasks\IndexController::class)
                 ->needs(\App\Repositories\Readable::class)
                 ->give(\App\Repositories\TaskRepository::class);
+        $this->app->when(\App\Http\Controllers\Tasks\ShowController::class)
+                ->needs(\App\Repositories\Readable::class)
+                ->give(\App\Repositories\TaskRepository::class);
+        $this->app->when(\App\Http\Controllers\Tasks\StoreController::class)
+                ->needs(\App\Repositories\Writetable::class)
+                ->give(\App\Repositories\TaskRepository::class);
     }
 }

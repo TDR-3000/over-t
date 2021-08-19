@@ -49,6 +49,8 @@ $router->group(['middleware' => 'api', 'prefix' => 'api/v1'], function () use ($
 	// TASKS //
 	$router->group(['middleware' => 'auth', 'prefix' => 'tasks'], function () use ($router) {
 		$router->get('/', 'Tasks\IndexController');
+		$router->post('/', 'Tasks\StoreController');
+		$router->get('/{id}', 'Tasks\ShowController');
 	});
 });
 
