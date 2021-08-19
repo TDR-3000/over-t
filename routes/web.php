@@ -51,6 +51,8 @@ $router->group(['middleware' => 'api', 'prefix' => 'api/v1'], function () use ($
 		$router->get('/', 'Tasks\IndexController');
 		$router->post('/', 'Tasks\StoreController');
 		$router->get('/{id}', 'Tasks\ShowController');
+		$router->put('/{id}', 'Tasks\UpdateController');
+		$router->delete('/{id}', 'Tasks\DeleteController');
 	});
 });
 

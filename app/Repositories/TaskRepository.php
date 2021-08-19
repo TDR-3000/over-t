@@ -61,11 +61,47 @@ class TaskRepository implements Readable, Writetable
 
     public function update(Request $request, int $id): array
     {
-        return [];
+        $record = $this->task->find($id);
+
+		if ($record === null) {
+			throw new TaskException('El registro no existe', 404);
+		}
+
+		$data = $request->all();
+
+		array_walk($data, function ($value, $key) use ($record, $request) {
+			$record->$key = (!empty($request->input($key))) ? $request->input($key) : $record->$key;
+		});
+
+		$response = $record->save();
+
+        if (!$response) {
+            throw new TaskException('Ha ocurrido un error', 500);
+        }
+
+		return [
+			"id" => $record->id,
+			"task" => $record->task
+		];
     }
 
     public function delete(int $id): array
     {
-        return [];
+        $record = $this->task->find($id);
+
+		if ($record === null) {
+			throw new TaskException('El registro no existe', 404);
+		}
+
+		$response = $record->delete();
+
+		if (!$response) {
+            throw new TaskException('Ha ocurrido un error', 500);
+        }
+
+		return [
+            "id" => $record->id,
+            "message" => "Elminado"
+        ];
     }
 }
