@@ -58,6 +58,10 @@ class AppServiceProvider extends ServiceProvider
                 ->give(\App\Repositories\CategorieTaskRepository::class);
         $this->app->when(\App\Http\Controllers\CategoriesTasks\DeleteController::class)
                 ->needs(\App\Repositories\Writetable::class)
-                ->give(\App\Repositories\CategorieTaskRepository::class);        
+                ->give(\App\Repositories\CategorieTaskRepository::class);
+                
+        $this->app->when(\App\Http\Controllers\Tasks\IndexController::class)
+                ->needs(\App\Repositories\Readable::class)
+                ->give(\App\Repositories\TaskRepository::class);
     }
 }

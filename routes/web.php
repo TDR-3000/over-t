@@ -46,5 +46,9 @@ $router->group(['middleware' => 'api', 'prefix' => 'api/v1'], function () use ($
 		$router->put('/{id}', 'CategoriesTasks\UpdateController');
 		$router->delete('/{id}', 'CategoriesTasks\DeleteController');
 	});
+	// TASKS //
+	$router->group(['middleware' => 'auth', 'prefix' => 'tasks'], function () use ($router) {
+		$router->get('/', 'Tasks\IndexController');
+	});
 });
 
