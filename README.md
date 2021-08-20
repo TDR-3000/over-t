@@ -1,24 +1,42 @@
-# Lumen PHP Framework
+# API - OVER :sparkling_heart:
 
-[![Build Status](https://travis-ci.org/laravel/lumen-framework.svg)](https://travis-ci.org/laravel/lumen-framework)
-[![Total Downloads](https://img.shields.io/packagist/dt/laravel/framework)](https://packagist.org/packages/laravel/lumen-framework)
-[![Latest Stable Version](https://img.shields.io/packagist/v/laravel/framework)](https://packagist.org/packages/laravel/lumen-framework)
-[![License](https://img.shields.io/packagist/l/laravel/framework)](https://packagist.org/packages/laravel/lumen-framework)
+Bienvenido al API de la app **OVER**
 
-Laravel Lumen is a stunningly fast PHP micro-framework for building web applications with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Lumen attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as routing, database abstraction, queueing, and caching.
+Una pequeña API de ingreso de tareas y control de ingresos de usuarios.
 
-## Official Documentation
+## OBJETIVO
+Esta aplicacion tiene como objetivo ser soporte y ayuda en mi experiencia como desarrollador,
+dando a conocer un poco de mi flujo de trabajo y el como me desenvuelvo al momento de desarrollar una aplicacion.
 
-Documentation for the framework can be found on the [Lumen website](https://lumen.laravel.com/docs).
+## EN EL DESARROLLO SE HA UTILIZADO
+* PHP 8
+* Lumen V-8.2 - **Laravel microframework**
+* MySQL
+* Composer
 
-## Contributing
+## HERRAMIENTAS UTILIZADAS PARA EL DESARROLLO
+* Visual Studio Code
+* Git
+* GitHub
+* Postman
+* MySQL Workbench
+* Heroku
+* Star UML
 
-Thank you for considering contributing to Lumen! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## ARQUITECTURA & CLEAN CODE
+* ADR & MVC
+* Conceptos sobre **S.O.L.I.D**
+* single responsibility principle
+* interface segregation principle
+* dependency inversion principle
+* REST
+* HATEOAS
+* POO
 
-## Security Vulnerabilities
+## PRODUCCION - https://back-over-api.herokuapp.com/api/v1
 
-If you discover a security vulnerability within Lumen, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+## ¿DESEAS PROBAR LA API EN POSTMAN?
 
-## License
+## https://www.postman.com/collections/6d5d10b38bc051578c58
 
-The Lumen framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## DERECHOS - Cristian Camilo Vasquez - 2021 :smile:
