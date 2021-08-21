@@ -78,7 +78,8 @@ $app->configure('app');
 
 $app->routeMiddleware([
     'api' => App\Http\Middleware\ApiMiddleware::class,
-    'auth'=> App\Http\Middleware\AuthMiddleware::class
+    'auth'=> App\Http\Middleware\AuthMiddleware::class,
+    \Fruitcake\Cors\HandleCors::class
 ]);
 
 /*
@@ -93,6 +94,7 @@ $app->routeMiddleware([
 */
 
 $app->register(App\Providers\AppServiceProvider::class);
+$app->register(Fruitcake\Cors\CorsServiceProvider::class);
 //$app->register(App\Providers\AuthServiceProvider::class);
 //$app->register(App\Providers\EventServiceProvider::class);
 
