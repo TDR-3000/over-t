@@ -72,14 +72,13 @@ $app->configure('app');
 |
 */
 
-// $app->middleware([
-//     App\Http\Middleware\ExampleMiddleware::class
-// ]);
+$app->middleware([
+    App\Http\Middleware\CorsMiddleware::class
+]);
 
 $app->routeMiddleware([
     'api' => App\Http\Middleware\ApiMiddleware::class,
     'auth'=> App\Http\Middleware\AuthMiddleware::class,
-    \Fruitcake\Cors\HandleCors::class
 ]);
 
 /*
@@ -94,7 +93,6 @@ $app->routeMiddleware([
 */
 
 $app->register(App\Providers\AppServiceProvider::class);
-$app->register(Fruitcake\Cors\CorsServiceProvider::class);
 //$app->register(App\Providers\AuthServiceProvider::class);
 //$app->register(App\Providers\EventServiceProvider::class);
 
