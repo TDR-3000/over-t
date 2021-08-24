@@ -40,8 +40,11 @@ class UserRepository implements Readable, Writetable
 	public function store(Request $request): array
 	{
 		$data = $request->all();
-		array_walk($data, function ($value, $key) use ($request) {
-			$this->user->$key = $request->input($key);
+		array_walk($data, function ($value, $key) use ($request, $data) {
+			if ($key == "password") {
+				$data[$key] = password_hash($request->input($key), PASSWORD_DEFAULT);
+			}
+			$this->user->$key = $data[$key];
 		});
 		$response = $this->user->save();
 
