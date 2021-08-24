@@ -33,11 +33,11 @@ $router->group(['middleware' => 'api', 'prefix' => 'api/v1'], function () use ($
 	// USERS //
 	$router->group(['middleware' => 'auth', 'prefix' => 'users'], function () use ($router) {
 		$router->get('/', 'Users\IndexController');
-		$router->post('/', 'Users\StoreController');
 		$router->get('/{id}', 'Users\ShowController');
 		$router->put('/{id}', 'Users\UpdateController');
 		$router->delete('/{id}', 'Users\DeleteController');
 	});
+	$router->post('/users', 'Users\StoreController');
 	// CATEGORIES TASKS //
 	$router->group(['middleware' => 'auth', 'prefix' => 'categories-tasks'], function () use ($router) {
 		$router->get('/', 'CategoriesTasks\IndexController');
